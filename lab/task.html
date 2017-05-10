@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+      <head>
+          <meta charset="UTF-8">
+      </head>
+      <body>
+	  <h4>WPF - część pierwsza</h4>
+    <p>Contact manager</p>
+    <ul>
+        <li><a href="contactManager.exe">Aplikacja przykładowa</a></li>
+		<li>wszystkie ikony użyte w zadaniu znajdują się w paczce <a href="resources.7z">resources</a>
+        <li>
+            Opis:
+            <ul>
+                <li>zadanie polega na napisaniu prostej aplikacji do zarządzania kontaktami</li>
+                <li>na każdy kontakt składa się imię i nazwisko osoby, numer telefonu oraz płeć</li>
+                <li>płeć ma jedna z dwóch wartości: kobieta, męzczyzna</li>
+                <li>możliwe jest ręczne dodawanie, usuwanie i edycja kontaktów</li>
+            </ul>
+        </li>
+        <li>
+            Wymagania:
+            <ul>
+                <li>
+                    Główne okno:
+                    <ul>
+                        <li>minimalny rozmiar 800 x 600, rozmiar początkowy 800 x 600</li>
+                        <li>na górze okna pasek menu</li>
+                        <li>pozostała część okna jest podzielona poziomo na dwie części. Pierwsza część o wysokości 300px, druga część zajmuje pozostała wysokość</li>
+                        <li>napis "Contact manager" na pasku tytułowym okna</li>
+                        <li>okno pojawia się na środku ekranu</li>
+                    </ul>
+                </li>
+                <li>
+                    Pasek menu:
+                    <ul>
+                        <li>
+                        	'File' zawiera:
+                            <ul>
+                            	<li>'Add contacts' - dodaje do listy 10 osób (dowolne dane osobowe)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Górna część głównego okna:
+                    <ul>
+                        <li>po lewej stronie znajduje się obrazek o stałym rozmiarze 250x220px i z obramowaniem 1px czarnym. Obrazek wyświetla odpowiednio sylwetkę kobiety lub męzczyzny w zalezności od płci wybranej osoby z listy kontaktów.</li>
+                        <li>po prawej stronie od obrazka znajdują się informacje o zaznaczonej osobie z listy kontaktów - imię, nazwisko oraz numer telefonu</li>
+                    </ul>
+                </li>
+				<li>
+					Dolna część głównego okna:
+					<ul>
+                        <li>składa się z dwóch zakładek - View mode oraz Edit mode</li>
+						<li>View mode:
+						<ul>
+							<li>lista kontaktów</li>
+							<li>pozycje parzyste i nieparzyste mają różne kolory tła  - #b5d1ff i #edf3ff</li>
+							<li>w zaznaczonym elemencie na liście wyświetla się także tekst po prawej stronie z numerem telefonu</li>
+							<li>ponadto zaznaczony element ma inny kolor tła, większą czcionkę oraz inny kolor tekstu - #b4ceab, 18pkt, white</li>
+							<li>implementacja powyższej funkcjonalności musi być odporna na np. usuwanie elementów ze środka, sortowanie i inne (czyli nie może być zrealizowana wyłącznie poprzez ustawienie tła elementu w momencie dodania go do listy)</li>
+							<li>do wyświetlania informacji o kontakcie musi zostać stworzony odpowiedni szablon, elementy powinny być ustawione tak, jak w przykładowej aplikacji</li>
+							<li>zaznaczony element na liście jest wyświetlany w górnej części okna - zdjęcie, imię, nazwisko, telefon</li>
+						</ul>
+						</li>
+						<li>Edit mode:
+							<ul>
+								<li>edytowalna lista kontatków</li>
+								<li>można edytować istniejące kontakty, dodawać nowe lub usuwać już istniejące</li>
+								<li>lista wyświetla dodatkowy wiersz pozwalający dodać nowy kontakt</li>
+								<li>kliknięcie na poszczególne kolumny powoduje sortowanie po danej pozycji</li>
+								<li>mozna zmienić płeć osobie za pomoca listy rozwijanej</li>
+							</ul>
+						</li>
+						
+                        <li>lista w zakładce 'View mode' musi być zgodna z listą z zakładki 'Edit mode' (bindowanie)</li>
+						<li>dodatkowy pusty rzad w zakładce 'Edit mode' nie wyświetla się w zakładce 'View mode'</li>
+                    </ul>
+				</li>
+            </ul>
+        </li>
+        <li>
+            Uwagi:
+            <ul>
+            	<li>aplikacja jest odporna na skalowanie okna, kontrolki dostosowują się do zmian rozmiaru okna aplikacji</li>
+                <li>obie listy w przypadku zmiany rozmiaru okna lub zwiększenia liczby elementów wyświetlają scroll bary, jeśli jest to potrzebne</li>
+                <li>zawartość obu list jest synchronizowana</li>
+                <li>w razie niejasności program musi być zgodny z zachowaniem i wyglądem aplikacji przykładowej, jednak nie należy wzorować się na potencjalnych bugach</li>
+            </ul>
+        </li>
+        <li>
+            Wskazówki:
+            <ul>
+                <li>Data binding, ObservableCollection</li>
+                <li>CollectionViewSource</li>
+                <li>AlternationIndex</li>
+				<li>HorizontalContentAlignment</li>
+                <li>Trigger</li>
+				<li>Setter, ContentTemplate</li>
+				<li>SystemColors.HighlightBrushKey</li>
+                <li>ListBox, ListBox.ItemsSource</li>
+                <li>ItemContainerStyle</li>
+                <li>DataTemplate</li>
+                <li>TabControl</li>
+                <li>Menu, MenuItem</li>
+                <li>DataGrid</li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            Punktacja:
+            <ul>
+                <li>Pełna funkcjonalność poza wygladem pozycji na liście w zakładce 'View mode' (wyglad moze być dowolny ale musi być mozliwość weryfikowania synchronizacji np. poprzez wyświetlenie imienia osoby) - 4pkt</li>
+                <li>Pełna funkcjonalność bez synchronizacji pomiędzy listami, 'Add contacts' dodaje nowe osoby do listy w zakładce 'View mode' - 4pkt</li>
+            </ul>
+        </li>
+    </ul>
+	</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+      <head>
+          <meta charset="UTF-8">
+      </head>
+      <body>
+	 <h4>WPF - część pierwsza</h4>
+    <p>Contact manager</p>
+    <ul>
+        <li><a href="lab.exe">Aplikacja przykładowa</a></li>
+		<li>wszystkie ikony użyte w zadaniu znajdują się w paczce <a href="resources.7z">resources</a>
+        <li>
+            Opis:
+            <ul>
+                <li>zadanie polega na napisaniu prostej aplikacji do zarządzania kontaktami</li>
+                <li>na każdy kontakt składa się imię i nazwisko osoby, numer telefonu oraz płeć</li>
+                <li>płeć ma jedna z dwóch wartości: kobieta, męzczyzna</li>
+                <li>możliwe jest ręczne dodawanie, usuwanie i edycja kontaktów</li>
+            </ul>
+        </li>
+        <li>
+            Wymagania:
+            <ul>
+                <li>
+                    Główne okno:
+                    <ul>
+                        <li>minimalny rozmiar 800 x 600, rozmiar początkowy 800 x 600</li>
+                        <li>na górze okna pasek menu</li>
+                        <li>pozostała część okna jest podzielona poziomo na dwie części. Pierwsza część o wysokości 300px, druga część zajmuje pozostała wysokość</li>
+                        <li>napis "Contact manager" na pasku tytułowym okna</li>
+                        <li>okno pojawia się na środku ekranu</li>
+                    </ul>
+                </li>
+                <li>
+                    Pasek menu:
+                    <ul>
+                        <li>
+                        	'File' zawiera:
+                            <ul>
+                            	<li>'Add contacts' - dodaje do listy 10 osób (dowolne dane osobowe)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Górna część głównego okna:
+                    <ul>
+                        <li>po lewej stronie znajduje się obrazek o stałym rozmiarze 250x220px i z obramowaniem 1px czarnym. Obrazek wyświetla odpowiednio sylwetkę kobiety lub męzczyzny w zalezności od płci wybranej osoby z listy kontaktów.</li>
+                        <li>po prawej stronie od obrazka znajdują się informacje o zaznaczonej osobie z listy kontaktów - imię, nazwisko oraz numer telefonu</li>
+                    </ul>
+                </li>
+				<li>
+					Dolna część głównego okna:
+					<ul>
+                        <li>składa się z dwóch zakładek - View mode oraz Edit mode</li>
+						<li>View mode:
+						<ul>
+							<li>lista kontaktów</li>
+							<li>pozycje parzyste i nieparzyste mają różne kolory tła  - #b5d1ff i #edf3ff</li>
+							<li>w zaznaczonym elemencie na liście wyświetla się także tekst po prawej stronie z numerem telefonu</li>
+							<li>ponadto zaznaczony element ma inny kolor tła, większą czcionkę oraz inny kolor tekstu - #b4ceab, 18pkt, white</li>
+							<li>implementacja powyższej funkcjonalności musi być odporna na np. usuwanie elementów ze środka, sortowanie i inne (czyli nie może być zrealizowana wyłącznie poprzez ustawienie tła elementu w momencie dodania go do listy)</li>
+							<li>do wyświetlania informacji o kontakcie musi zostać stworzony odpowiedni szablon, elementy powinny być ustawione tak, jak w przykładowej aplikacji</li>
+							<li>zaznaczony element na liście jest wyświetlany w górnej części okna - zdjęcie, imię, nazwisko, telefon</li>
+						</ul>
+						</li>
+						<li>Edit mode:
+							<ul>
+								<li>edytowalna lista kontatków</li>
+								<li>można edytować istniejące kontakty, dodawać nowe lub usuwać już istniejące</li>
+								<li>lista wyświetla dodatkowy wiersz pozwalający dodać nowy kontakt</li>
+								<li>kliknięcie na poszczególne kolumny powoduje sortowanie po danej pozycji</li>
+								<li>mozna zmienić płeć osobie za pomoca listy rozwijanej</li>
+							</ul>
+						</li>
+						
+                        <li>lista w zakładce 'View mode' musi być zgodna z listą z zakładki 'Edit mode' (bindowanie)</li>
+						<li>dodatkowy pusty rzad w zakładce 'Edit mode' nie wyświetla się w zakładce 'View mode'</li>
+                    </ul>
+				</li>
+            </ul>
+        </li>
+        <li>
+            Uwagi:
+            <ul>
+            	<li>aplikacja jest odporna na skalowanie okna, kontrolki dostosowują się do zmian rozmiaru okna aplikacji</li>
+                <li>obie listy w przypadku zmiany rozmiaru okna lub zwiększenia liczby elementów wyświetlają scroll bary, jeśli jest to potrzebne</li>
+                <li>zawartość obu list jest synchronizowana</li>
+                <li>w razie niejasności program musi być zgodny z zachowaniem i wyglądem aplikacji przykładowej, jednak nie należy wzorować się na potencjalnych bugach</li>
+            </ul>
+        </li>
+        <li>
+            Wskazówki:
+            <ul>
+                <li>Data binding, ObservableCollection</li>
+                <li>CollectionViewSource</li>
+                <li>AlternationIndex</li>				
+                <li>Trigger</li>
+				<li>Setter, ContentTemplate</li>
+				<li>SystemColors.HighlightBrushKey</li>
+                <li>ListBox, ListBox.ItemsSource</li>
+                <li>ItemContainerStyle</li>
+                <li>DataTemplate</li>
+                <li>TabControl</li>
+                <li>Menu, MenuItem</li>
+                <li>DataGrid</li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            Punktacja:
+            <ul>
+                <li>Pełna funkcjonalność poza wygladem pozycji na liście w zakładce 'View mode' (wyglad moze być dowolny ale musi być mozliwość weryfikowania synchronizacji np. poprzez wyświetlenie imienia osoby) - 4pkt</li>
+                <li>Pełna funkcjonalność bez synchronizacji pomiędzy listami, 'Add contacts' dodaje nowe osoby do listy w zakładce 'View mode' - 4pkt</li>
+            </ul>
+        </li>
+    </ul>
+    <h4>WPF - część druga</h4>
+    <ul>
+        <li><a href="home.exe">Aplikacja przykładowa</a></li>
+		<li>wszystkie ikony użyte w zadaniu znajdują się w paczce <a href="resources.7z">resources</a>
+		<li><b>aplikacja powinna wygladać jak przykładowa!</b></li>
+        <li>
+            Opis:
+            <ul>
+                <li>
+                    Pasek menu:
+                    <ul>
+                        <li>
+                        	'File' zawiera dwa przyciski:
+                            <ul>
+                            	<li>'Import contacts' - wyświetla okno otwarcia pliku i wczytuje listę kontatków z pliku XML</li>
+                                <li>'Export contacts' - wyświetla okno zapisu pliku i zapisuje aktualną listę kontaktów na dysku w formacie XML</li>
+                                <li>oba okna mają filtry plików ustawione na pliki XML</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Górna część głównego okna:
+                    <ul>
+						<li>po najechaniu myszką na obrazek kursor zmienia wygląd</li>
+						<li>po naciśnięciu na obrazek wyświetla się okno wyboru nowego zdjęcia dla danej osoby. Wybrane zdjęcie wyświetla się zamiast domyślnego</li>
+						<li>wyświetlanie odpowiedniego obrazka zrealizować za pomocą bindingu</li>
+						<li>po wybraniu nowego zdjęcia i zapisaniu listy kontaktów do pliku, a następnie jej wczytaniu zdjęcie powinno działać poprawnie</li>
+						<li>w przypadku, gdy podczas wczytywania z pliku nie mozna wczytać danego zdjęcia, powinien zostać wyświetlony domyślny obrazek w zależności od płci</li>
+                        <li>po prawej stronie znajduje się wyszukiwarka oraz przyciski dodawania i usuwania. Proszę zwrócić uwagę na zachowanie podczas zmiany rozmiaru okna</li>
+                        <li>zarówno przyciski jak i wyszukiwarka posiadają ikonki z lewej strony - jak w aplikacji przykładowej</li>
+                        <li>przycisk usuwania - usuwa zaznaczoną osobę z listy</li>
+						<li>
+							przycisk dodawania - otwiera nowe okno z formularzem:
+							<ul>
+								<li>nowe okno:
+									<ul>
+										<li>stały rozmiar: 300x300px</li>
+										<li>wyświetla się na środku głównego okna, ma stałą pozycję</li>
+										<li>ikona okna nie wyświetla się na pasku</li>
+										<li>podczas wyświetlania okienka - główne okno jest wyciemnione</li>
+									</ul>
+								</li>
+								<li>formularz:
+									<ul>
+										<li>zarówno imię, nazwisko jak i adres nie mogą być puste. Numer telefonu może zawierać tylko cyfry</li>
+										<li>użytkowik może wpisać datę lub wybrać ją za pomoca kalendarza</li>
+										<li>data początkowo jest ustawiona na aktualny dzień</li>
+										<li>przycisk add w okienku formularza jest aktywny, tylko wtedy gdy wszystkie wprowadzone dane są poprawne (MultiBinding)</li>
+										<li>należy stworzyć odpowiednie szablony błędu, informujące użytkownika o tym co zrobił źle</li>
+										<li>gdy w danym polu jest błąd, pole to jest obramowane na czerwono, a po prawej stronie jest wyświetlony biały X na czerwonej elipsie</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>wyszukiwarka:
+							<ul>
+								<li>wyszukiwarka rozdziela słowa po spacji</li>
+								<li>dla każdego słowa jest przeszukiwana lista kontaktów</li>
+								<li>jeżeli imię, nazwisko, miasto lub numer telefonu zawierają w sobie dany string to jest on dodawany na listę wyników wyszukiwania</li>
+								<li>podcas wyszukiwania w obu zakładkach na listach znajdują się tylko znalezione kontakty. Można je edytować i usuwać</li>
+								<li>oczywiście zmiany dokonane na kontaktach z listy wyników sa zsynchronizowane z lista wszystkich kontaktów</li>
+							</ul>
+						</li>
+                    </ul>
+                </li>
+                <li>
+                    'Edit mode':
+                    <ul>
+                        <li>kolumna z data urodzenia zawiera kalendarz, dzięki któremu można zmienić datę urodzenia danej osoby</li>
+						<li>nie jest wymagana walidacja danych podczas edycji danych</li>
+						<li>nie ma dodatkowego wiersza na dodawanie nowej osoby. Mozna to uczynić tylko poprzez formularz</li>
+						<li>podczas zmiany wyboru wiersza zmienia się także kontakt w górnej części okna</li>
+                    </ul>
+                </li>
+                <li>
+                    TabControl:
+                    <ul>
+                        <li>należy zmienić styl zakładek, tak aby przypominały te w aplikacji przykładowej</li>
+						<li>rozmiar czcionki: 15pkt</li>
+						<li>podczas gdy dana zakładka jest aktywna jej kolor zmienia się, a tytuł zostaje podkreślony  - kolor: #3462ad</li>
+						<li>po najechaniu na zakładkę zmienia się wyglad kursora</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Dodatkowe wymagania:
+            <ul>
+                <li>obowiązkowo należy spełnić wzystkie wymagania części pierwszej zadania</li>
+                <li>należy zwrócić uwagę, aby kontrolki zachowywały się i wyglądały jak w aplikacji przykładowej (uwaga na skalowanie, zmianę zawartości itd.)</li>
+                <li>format zapisywanych plików powinien być czytelny dla człowieka - przykład <a href="People.xml">tutaj</a></li>
+                <li>należy zadbać, aby wszystkie formularze wykorzystane w aplikacji przyjmowały tylko sensowne dane</li>
+                <li>w razie niejasności program musi być zgodny z zachowaniem i wyglądem aplikacji przykładowej (z wyjątkiem potencjalnych bugów)</li>
+            </ul>
+        </li>
+        <li>
+            Wskazówki:
+            <ul>
+                <li>ControlTemplate, ContentPresenter</li>
+				<li>DataTrigger</li>
+                <li>ControlTemplate.Triggers</li>
+				<li>DataGrid.AutoGeneratingColumn</li>
+				<li>ValidationRule</li>
+				<li>MultiBinding</li>
+				<li>IMultiValueConverter</li>
+				<li>Validation.ErrorTemplate, Validation.HasError, AdornedElementPlaceholder</li>
+				<li>Ellipse</li>
+				<li>Opacity</li>
+                <li>XMLSerializer</li>
+				<li>LINQ</li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            Punktacja:
+            <ul>
+                <li>dodane ikonek do buttonów - 1pkt</li>
+                <li>zrobienie wyszukiwarki - 2pkt</li>
+                <li>stylizacja TabControl - 2pkt</li>
+                <li>obsługa zmiany zdjęcia - 1pkt</li>
+                <li>zapisywanie/wczytywanie listy kontatków do/z pliku xml - 1pkt</li>
+                <li>dodanie informacji o dacie i mieście oraz poprawna edycja daty w zakładce edycji - 2pkt</li>
+                <li>okienko dodawania nowej osoby do listy kontaktów - stylizacja - 1pkt</li>
+				<li>okienko dodawania nowej osoby do listy kontaktów - walidacja danych i ustawianie Button.IsEnabled w zalezności od poprawności danych - 2pkt </li>
+            </ul>
+        </li>
+    </ul>
+      </body>
+</html>
