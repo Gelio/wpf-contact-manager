@@ -13,6 +13,7 @@
         <CollectionViewSource x:Key="ContactsList" Source="{Binding ContactsList}" />
         <local:PersonSexConverter x:Key="PersonSexConverter"></local:PersonSexConverter>
         <local:SexToImageSourceConverter x:Key="SexToImageSourceConverter"></local:SexToImageSourceConverter>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="Gray">
@@ -67,12 +68,9 @@
                                 <DockPanel>
                                     <TextBlock Text="{Binding Surname}" Margin="10" />
                                     <TextBlock Text="{Binding Name}" Margin="10" />
-                                    <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10" Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}">
-                                        <!--<StackPanel.Triggers>
-                                            <Trigger Property="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}" Value="True">
-                                                
-                                            </Trigger>
-                                        </StackPanel.Triggers>-->
+                                    <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10"
+                                                Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+
                                         <TextBlock Margin="0,0,5,0">phone:</TextBlock>
                                         <TextBlock Text="{Binding PhoneNumber}" />
                                     </StackPanel>
