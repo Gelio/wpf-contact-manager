@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Contact_Manager.Annotations;
 
@@ -10,6 +11,9 @@ namespace Contact_Manager
         private string _surname;
         private PersonSex _sex;
         private string _phoneNumber;
+        private string _city;
+        private DateTime _birthDate;
+        private string _customPicture;
 
         public string Name
         {
@@ -56,6 +60,39 @@ namespace Contact_Manager
                 if (value == _phoneNumber) return;
                 _phoneNumber = value;
                 OnPropertyChanged(nameof(PhoneNumber));
+            }
+        }
+
+        public string City
+        {
+            get { return _city; }
+            set
+            {
+                if (value == _city) return;
+                _city = value;
+                OnPropertyChanged(nameof(City));
+            }
+        }
+
+        public DateTime BirthDate
+        {
+            get { return _birthDate; }
+            set
+            {
+                if (value.Equals(_birthDate)) return;
+                _birthDate = value;
+                OnPropertyChanged(nameof(BirthDate));
+            }
+        }
+
+        public string CustomPicture
+        {
+            get { return _customPicture; }
+            set
+            {
+                if (value == _customPicture) return;
+                _customPicture = value;
+                OnPropertyChanged(nameof(CustomPicture));
             }
         }
 
