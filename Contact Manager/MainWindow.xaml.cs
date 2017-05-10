@@ -53,7 +53,15 @@ namespace Contact_Manager
         {
             for (int i = 0; i < 10; i++)
             {
-                ContactsList.Add(new Contact() { Name = "Jan" + i, Surname = "Kowalski" + i, PhoneNumber = "12345678" + i, Sex = i % 2 == 0 ? PersonSex.Male : PersonSex.Female });
+                ContactsList.Add(new Contact()
+                {
+                    Name = "Jan" + i,
+                    Surname = "Kowalski" + i,
+                    PhoneNumber = "12345678" + i,
+                    Sex = i % 2 == 0 ? PersonSex.Male : PersonSex.Female,
+                    BirthDate = DateTime.Now,
+                    City = "Chicago"
+                });
             }
         }
 
@@ -120,6 +128,29 @@ namespace Contact_Manager
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void ChangePersonPicture(object sender, MouseButtonEventArgs e)
+        {
+            Contact contact = ContactListView.SelectedItem as Contact;
+            if (contact == null)
+            {
+                MessageBox.Show(this, "Please select a contact first", "Select a contact first", MessageBoxButton.OK,
+                    MessageBoxImage.Exclamation);
+                return;
+            }
+
+            var openDialog = new OpenFileDialog()
+            {
+                Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)|*.jpg;*.jpeg;*.jpe;*.jfif;*.png"
+            };
+
+            bool? result = openDialog.ShowDialog(this);
+            if (!result.Value)
+                return;
+
+            contact.CustomPicture = openDialog.FileName;
+
         }
     }
 }
