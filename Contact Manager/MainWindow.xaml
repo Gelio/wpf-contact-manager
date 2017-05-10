@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contact_Manager"
         mc:Ignorable="d"
-        Title="Contact Manager" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Contact Manager" Height="600" Width="800"
+        MinHeight="600" MinWidth="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <CollectionViewSource x:Key="AvailableSexList" Source="{Binding AvailableSexList}" />
+        <CollectionViewSource x:Key="ContactsList" Source="{Binding ContactsList}" />
+        <local:PersonSexConverter x:Key="PersonSexConverter"></local:PersonSexConverter>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Background="Gray">
+            <MenuItem Header="File">
+                <MenuItem Header="Add contacts" Click="PopulateContacts"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                
+            </StackPanel>
+
+            <TabControl Grid.Row="1">
+                <TabItem Header="View mode">
+                    <ListView Name="ViewModeList">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </TabItem>
+                
+                <TabItem Header="Edit mode">
+                    <DataGrid ItemsSource="{Binding ContactsList}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
+                            <DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}" />
+                            <DataGridComboBoxColumn Header="Sex"
+                                                    SelectedValueBinding="{Binding Sex, Converter={StaticResource PersonSexConverter}}"
+                                                    ItemsSource="{Binding Source={StaticResource AvailableSexList}}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
 </Window>

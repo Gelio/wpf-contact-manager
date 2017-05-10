@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,21 @@ namespace Contact_Manager
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Contact> ContactsList { get; set; } = new ObservableCollection<Contact>();
+        public ObservableCollection<string> AvailableSexList { get; set; } = new ObservableCollection<string>() { "Male", "Female" };
+
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+        }
+
+        private void PopulateContacts(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                ContactsList.Add(new Contact() { Name = "Jan" + i, Surname = "Kowalski" + i, PhoneNumber = "12345678" + i, Sex = i % 2 == 0 ? PersonSex.Male : PersonSex.Female });
+            }
         }
     }
 }
