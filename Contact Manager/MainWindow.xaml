@@ -11,9 +11,9 @@
     <Window.Resources>
         <CollectionViewSource x:Key="AvailableSexList" Source="{Binding AvailableSexList}" />
         <CollectionViewSource x:Key="ContactsList" Source="{Binding ContactsList}" />
-        <local:PersonSexConverter x:Key="PersonSexConverter"></local:PersonSexConverter>
-        <local:SexToImageSourceConverter x:Key="SexToImageSourceConverter"></local:SexToImageSourceConverter>
-        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
+        <local:PersonSexConverter x:Key="PersonSexConverter" />
+        <local:SexToImageSourceConverter x:Key="SexToImageSourceConverter" />
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="Gray">
@@ -36,27 +36,27 @@
                 </Border>
                 <Grid Grid.Column="1" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.Resources>
                         <Style TargetType="TextBlock" x:Key="InfoLabel">
-                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                            <Setter Property="FontWeight" Value="Bold" />
                         </Style>
                     </Grid.Resources>
                     <TextBlock Style="{StaticResource InfoLabel}" Margin="0,0,10,0">Name:</TextBlock>
-                    <TextBlock Text="{Binding SelectedItem.Name}" Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.Name}" Grid.Row="0" Grid.Column="1" />
 
                     <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="1" Grid.Column="0">Surname:</TextBlock>
-                    <TextBlock Text="{Binding SelectedItem.Surname}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.Surname}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" />
 
                     <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="2" Grid.Column="0">Phone number:</TextBlock>
-                    <TextBlock Text="{Binding SelectedItem.PhoneNumber}" Margin="0,10,0,0" Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.PhoneNumber}" Margin="0,10,0,0" Grid.Row="2" Grid.Column="1" />
                 </Grid>
             </Grid>
 
@@ -87,9 +87,9 @@
                                         <Setter Property="Background" Value="#edf3ff" />
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="FontSize" Value="18"></Setter>
-                                        <Setter Property="Foreground" Value="White"></Setter>
-                                        <Setter Property="Background" Value="#b4ceab"></Setter>
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Background" Value="#b4ceab" />
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -113,246 +113,4 @@
         </Grid>
     </DockPanel>
 </Window>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
