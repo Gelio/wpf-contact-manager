@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Border BorderThickness="1" Margin="10">
-                    <Image Source="{Binding SelectedItem.Sex, Converter={StaticResource SexToImageSourceConverter}}"></Image>
+                    <Image Source="{Binding SelectedItem.Sex, Converter={StaticResource SexToImageSourceConverter}}" />
                 </Border>
                 <Grid Grid.Column="1" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
@@ -50,12 +50,12 @@
                         </Style>
                     </Grid.Resources>
                     <TextBlock Style="{StaticResource InfoLabel}" Margin="0,0,10,0">Name:</TextBlock>
-                    <TextBlock Text="{Binding SelectedItem.Name}" Grid.Column="1"></TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.Name}" Grid.Row="0" Grid.Column="1"></TextBlock>
 
-                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="1">Surname:</TextBlock>
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="1" Grid.Column="0">Surname:</TextBlock>
                     <TextBlock Text="{Binding SelectedItem.Surname}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1"></TextBlock>
 
-                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="2">Phone number:</TextBlock>
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="2" Grid.Column="0">Phone number:</TextBlock>
                     <TextBlock Text="{Binding SelectedItem.PhoneNumber}" Margin="0,10,0,0" Grid.Row="2" Grid.Column="1"></TextBlock>
                 </Grid>
             </Grid>
@@ -113,6 +113,128 @@
         </Grid>
     </DockPanel>
 </Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
