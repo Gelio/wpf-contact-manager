@@ -12,12 +12,11 @@ namespace Contact_Manager
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             Contact contact = (Contact)values[0];
-            string customPicture = (string) values[1];
             if (contact == null)
                 return null;
 
-            if (!string.IsNullOrEmpty(customPicture) && File.Exists(customPicture))
-                return new BitmapImage(new Uri(customPicture, UriKind.RelativeOrAbsolute));
+            if (!string.IsNullOrEmpty(contact.CustomPicture) && File.Exists(contact.CustomPicture))
+                return new BitmapImage(new Uri(contact.CustomPicture, UriKind.RelativeOrAbsolute));
 
             PersonSex sex = contact.Sex;
             return new BitmapImage(new Uri(sex == PersonSex.Male ? "man.png" : "woman.jpg", UriKind.RelativeOrAbsolute));

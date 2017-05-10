@@ -53,6 +53,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.Resources>
                         <Style TargetType="TextBlock" x:Key="InfoLabel">
@@ -67,6 +69,12 @@
 
                     <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="2" Grid.Column="0">Phone number:</TextBlock>
                     <TextBlock Text="{Binding SelectedItem.PhoneNumber}" Margin="0,10,0,0" Grid.Row="2" Grid.Column="1" />
+                    
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="3" Grid.Column="0">Date of birth:</TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.BirthDate, StringFormat={}{0:dd.MM.yyyy}}" Margin="0,10,0,0" Grid.Row="3" Grid.Column="1"></TextBlock>
+                    
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="4" Grid.Column="0">City:</TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.City}" Margin="0,10,0,0" Grid.Row="4" Grid.Column="1"></TextBlock>
                 </Grid>
             </Grid>
 

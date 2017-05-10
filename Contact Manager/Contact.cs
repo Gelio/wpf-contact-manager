@@ -13,7 +13,7 @@ namespace Contact_Manager
         private string _phoneNumber;
         private string _city;
         private DateTime _birthDate;
-        private string _customPicture;
+        private string _customPicture = "";
 
         public string Name
         {
