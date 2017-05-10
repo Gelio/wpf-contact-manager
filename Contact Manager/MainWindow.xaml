@@ -19,6 +19,8 @@
         <Menu DockPanel.Dock="Top" Background="Gray">
             <MenuItem Header="File">
                 <MenuItem Header="Add contacts" Click="PopulateContacts" />
+                <MenuItem Header="Import contacts" Click="ImportContacts" />
+                <MenuItem Header="Export contacts" Click="ExportContacts" />
             </MenuItem>
         </Menu>
         <Grid>
@@ -31,7 +33,7 @@
                     <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Border BorderThickness="1" Margin="10">
+                <Border BorderThickness="1" BorderBrush="Black" Margin="10">
                     <Image Source="{Binding SelectedItem.Sex, Converter={StaticResource SexToImageSourceConverter}}" />
                 </Border>
                 <Grid Grid.Column="1" VerticalAlignment="Center">

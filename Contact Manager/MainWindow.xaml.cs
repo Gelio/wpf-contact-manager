@@ -38,5 +38,15 @@ namespace Contact_Manager
                 ContactsList.Add(new Contact() { Name = "Jan" + i, Surname = "Kowalski" + i, PhoneNumber = "12345678" + i, Sex = i % 2 == 0 ? PersonSex.Male : PersonSex.Female });
             }
         }
+
+        private void ImportContacts(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ExportContacts(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
