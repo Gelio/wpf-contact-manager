@@ -12,33 +12,93 @@
         <CollectionViewSource x:Key="AvailableSexList" Source="{Binding AvailableSexList}" />
         <CollectionViewSource x:Key="ContactsList" Source="{Binding ContactsList}" />
         <local:PersonSexConverter x:Key="PersonSexConverter"></local:PersonSexConverter>
+        <local:SexToImageSourceConverter x:Key="SexToImageSourceConverter"></local:SexToImageSourceConverter>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="Gray">
             <MenuItem Header="File">
-                <MenuItem Header="Add contacts" Click="PopulateContacts"></MenuItem>
+                <MenuItem Header="Add contacts" Click="PopulateContacts" />
             </MenuItem>
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="300"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
-                
-            </StackPanel>
+            <Grid DataContext="{Binding ElementName=ContactListView}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="1" Margin="10">
+                    <Image Source="{Binding SelectedItem.Sex, Converter={StaticResource SexToImageSourceConverter}}"></Image>
+                </Border>
+                <Grid Grid.Column="1" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock" x:Key="InfoLabel">
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,0,10,0">Name:</TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.Name}" Grid.Column="1"></TextBlock>
+
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="1">Surname:</TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.Surname}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1"></TextBlock>
+
+                    <TextBlock Style="{StaticResource InfoLabel}" Margin="0,10,10,0" Grid.Row="2">Phone number:</TextBlock>
+                    <TextBlock Text="{Binding SelectedItem.PhoneNumber}" Margin="0,10,0,0" Grid.Row="2" Grid.Column="1"></TextBlock>
+                </Grid>
+            </Grid>
 
             <TabControl Grid.Row="1">
                 <TabItem Header="View mode">
-                    <ListView Name="ViewModeList">
+                    <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" DataContext="{StaticResource ContactsList}" ItemsSource="{Binding}" Name="ContactListView">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                
+                                <DockPanel>
+                                    <TextBlock Text="{Binding Surname}" Margin="10" />
+                                    <TextBlock Text="{Binding Name}" Margin="10" />
+                                    <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10" Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}">
+                                        <!--<StackPanel.Triggers>
+                                            <Trigger Property="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=IsSelected}" Value="True">
+                                                
+                                            </Trigger>
+                                        </StackPanel.Triggers>-->
+                                        <TextBlock Margin="0,0,5,0">phone:</TextBlock>
+                                        <TextBlock Text="{Binding PhoneNumber}" />
+                                    </StackPanel>
+                                </DockPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                        <Setter Property="Background" Value="#b5d1ff" />
+                                    </Trigger>
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                        <Setter Property="Background" Value="#edf3ff" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontSize" Value="18"></Setter>
+                                        <Setter Property="Foreground" Value="White"></Setter>
+                                        <Setter Property="Background" Value="#b4ceab"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                     </ListView>
                 </TabItem>
-                
+
                 <TabItem Header="Edit mode">
                     <DataGrid ItemsSource="{Binding ContactsList}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True">
                         <DataGrid.Columns>
@@ -55,3 +115,124 @@
         </Grid>
     </DockPanel>
 </Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

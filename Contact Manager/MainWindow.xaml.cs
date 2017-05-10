@@ -28,6 +28,7 @@ namespace Contact_Manager
         {
             InitializeComponent();
             this.DataContext = this;
+            PopulateContacts(null, null);
         }
 
         private void PopulateContacts(object sender, RoutedEventArgs e)
