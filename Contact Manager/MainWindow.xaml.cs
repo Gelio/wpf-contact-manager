@@ -152,5 +152,14 @@ namespace Contact_Manager
             contact.CustomPicture = openDialog.FileName;
 
         }
+
+        private void RemoveSelectedContact(object sender, RoutedEventArgs e)
+        {
+            Contact contact = ContactListView.SelectedItem as Contact;
+            if (contact == null)
+                return;
+
+            ContactsList.Remove(contact);
+        }
     }
 }
