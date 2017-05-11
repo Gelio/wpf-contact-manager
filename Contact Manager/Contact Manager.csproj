@@ -60,7 +60,6 @@
     <Compile Include="BooleanToVisibilityConverter.cs" />
     <Compile Include="ContactToImageSourceConverter.cs" />
     <Compile Include="Converters\EmptyStringToBooleanConverter.cs" />
-    <Compile Include="Converters\NorBooleanConverter.cs" />
     <Compile Include="ValidationRules\NumericRule.cs" />
     <Compile Include="ValidationRules\RequiredRule.cs" />
     <Page Include="AddItemWindow.xaml">

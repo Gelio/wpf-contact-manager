@@ -30,6 +30,7 @@ namespace Contact_Manager
         private ObservableCollection<Contact> _contactsList = new ObservableCollection<Contact>();
         private Visibility _overlayVisibility = Visibility.Collapsed;
         private string _contactsFilter;
+        private ICollectionView _contactsListCollectionView;
 
         public ObservableCollection<Contact> ContactsList
         {
@@ -42,7 +43,16 @@ namespace Contact_Manager
             }
         }
 
-        public ICollectionView ContactsListCollectionView { get; set; }
+        public ICollectionView ContactsListCollectionView
+        {
+            get { return _contactsListCollectionView; }
+            set
+            {
+                if (Equals(value, _contactsListCollectionView)) return;
+                _contactsListCollectionView = value;
+                OnPropertyChanged(nameof(ContactsListCollectionView));
+            }
+        }
 
         public string ContactsFilter
         {
@@ -71,11 +81,16 @@ namespace Contact_Manager
         public MainWindow()
         {
             InitializeComponent();
+            CreateContactsListCollectionView();
+            this.DataContext = this;
+            PopulateContacts(null, null);
+        }
+
+        private void CreateContactsListCollectionView()
+        {
             var contactsListView = new CollectionViewSource() { Source = ContactsList };
             ContactsListCollectionView = contactsListView.View;
             ContactsListCollectionView.Filter = ContactsFilterPredicate;
-            this.DataContext = this;
-            PopulateContacts(null, null);
         }
 
         private bool ContactsFilterPredicate(object o)
@@ -144,6 +159,7 @@ namespace Contact_Manager
                 return;
 
             ContactsList = newContacts;
+            CreateContactsListCollectionView();
         }
 
         private void ExportContacts(object sender, RoutedEventArgs e)
