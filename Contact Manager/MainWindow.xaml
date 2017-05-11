@@ -109,7 +109,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Width="100" HorizontalContentAlignment="Left">
+                        <Button Grid.Column="0" Width="100" HorizontalContentAlignment="Left" Click="OpenNewContactDialog">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="add.png" Width="20" Height="20" />
                                 <TextBlock Text="Add" />

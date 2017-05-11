@@ -161,5 +161,17 @@ namespace Contact_Manager
 
             ContactsList.Remove(contact);
         }
+
+        private void OpenNewContactDialog(object sender, RoutedEventArgs e)
+        {
+            AddItemWindow dialog = new AddItemWindow();
+            dialog.Owner = this;
+            bool? result = dialog.ShowDialog();
+
+            if (!result.HasValue || !result.Value)
+                return;
+
+            ContactsList.Add(dialog.NewContact);
+        }
     }
 }
