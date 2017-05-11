@@ -14,9 +14,18 @@
         <CollectionViewSource Source="{Binding AvailableSexList}" x:Key="AvailableSexList" />
         <local:PersonSexConverter x:Key="PersonSexConverter" />
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
+        <ControlTemplate x:Key="ValidationTemplate">
+            <DockPanel>
+                <Grid DockPanel.Dock="Right" Margin="2 0 0 0">
+                    <Ellipse Width="23" Height="23" Fill="Red" />
+                    <TextBlock Text="X" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" />
+                </Grid>
+                <AdornedElementPlaceholder />
+            </DockPanel>
+        </ControlTemplate>
     </Window.Resources>
-    
-    <Grid Margin="20 8" DataContext="{Binding NewContact}">
+
+    <Grid Margin="20 8 28 8" DataContext="{Binding NewContact}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -41,25 +50,27 @@
         </Grid.Resources>
 
         <TextBlock Grid.Row="0">Name:</TextBlock>
-        <DockPanel Grid.Row="0" Grid.Column="1">
-            <Label DockPanel.Dock="Right">
-                <Image Source="delete.png" ToolTip="{Binding ElementName=NameInput, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                       Visibility="{Binding ElementName=NameInput, Path=Validation.HasError, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            </Label>
-            <TextBox Style="{StaticResource InputControlStyle}" Name="NameInput">
-                <TextBox.Text>
-                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnSourceUpdated="True" ValidatesOnExceptions="True">
-                        <Binding.ValidationRules>
-                            <validationRules:RequiredRule Name="Name" />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-        </DockPanel>
+        <TextBox Style="{StaticResource InputControlStyle}" Name="NameInput" Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                 Grid.Row="0" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredRule FieldName="Name" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <TextBlock Grid.Row="1">Surname:</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource InputControlStyle}"
-                 Text="{Binding Surname}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox.Text>
+                <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredRule FieldName="Surname" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <TextBlock Grid.Row="2">Date of birth:</TextBlock>
         <DatePicker Grid.Row="2" Grid.Column="1" Style="{StaticResource InputControlStyle}"
@@ -71,12 +82,27 @@
                   ItemsSource="{Binding Source={StaticResource AvailableSexList}}" />
 
         <TextBlock Grid.Row="4">Phone number:</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource InputControlStyle}"
-                 Text="{Binding PhoneNumber}" />
+        <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox.Text>
+                <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredRule FieldName="Phone number" />
+                        <validationRules:NumericRule FieldName="Phone number" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <TextBlock Grid.Row="5">City:</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource InputControlStyle}"
-                 Text="{Binding City}" />
+        <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+            <TextBox.Text>
+                <Binding Path="City" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:RequiredRule FieldName="City" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <Button Grid.Row="6" HorizontalAlignment="Center" Margin="5" Width="80" Height="25" Click="CancelWindow">Cancel</Button>
         <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Margin="5" Width="80" Height="25" Click="AddNewPerson">Add</Button>

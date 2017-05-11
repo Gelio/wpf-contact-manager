@@ -5,7 +5,7 @@ namespace Contact_Manager.ValidationRules
 {
     public class RequiredRule : ValidationRule
     {
-        public string Name
+        public string FieldName
         {
             get;
             set;
@@ -15,9 +15,9 @@ namespace Contact_Manager.ValidationRules
         {
             if (string.IsNullOrEmpty((string)value))
             {
-                if (Name.Length == 0)
-                    Name = "Field";
-                return new ValidationResult(false, Name + " is mandatory.");
+                if (FieldName.Length == 0)
+                    FieldName = "Field";
+                return new ValidationResult(false, FieldName + " is mandatory.");
             }
             return ValidationResult.ValidResult;
         }
