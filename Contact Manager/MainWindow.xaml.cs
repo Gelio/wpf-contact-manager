@@ -106,9 +106,18 @@ namespace Contact_Manager
             IEnumerable<string> personData = new string[] { contact.Name, contact.Surname, contact.City, contact.PhoneNumber }.Select(s => s.ToLower()).ToArray();
 
             foreach (string filterPart in filterParts)
+            {
+                bool partMatches = false;
                 foreach (string personDatum in personData)
                     if (!string.IsNullOrEmpty(personDatum) && personDatum.Contains(filterPart))
-                        return true;
+                    {
+                        partMatches = true;
+                        break;
+                    }
+
+                if (partMatches)
+                    return true;
+            }
 
             return false;
         }
