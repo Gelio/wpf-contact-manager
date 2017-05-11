@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="AddItemWindow" Height="300" Width="300"
         WindowStyle="None"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
     <Window.Resources>
         <CollectionViewSource Source="{Binding AvailableSexList}" x:Key="AvailableSexList" />
         <local:PersonSexConverter x:Key="PersonSexConverter" />

@@ -28,6 +28,7 @@ namespace Contact_Manager
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private ObservableCollection<Contact> _contactsList = new ObservableCollection<Contact>();
+        private Visibility _overlayVisibility = Visibility.Collapsed;
 
         public ObservableCollection<Contact> ContactsList
         {
@@ -37,6 +38,17 @@ namespace Contact_Manager
                 if (Equals(value, _contactsList)) return;
                 _contactsList = value;
                 OnPropertyChanged(nameof(ContactsList));
+            }
+        }
+
+        public Visibility OverlayVisibility
+        {
+            get { return _overlayVisibility; }
+            set
+            {
+                if (value == _overlayVisibility) return;
+                _overlayVisibility = value;
+                OnPropertyChanged(nameof(OverlayVisibility));
             }
         }
 
@@ -164,9 +176,14 @@ namespace Contact_Manager
 
         private void OpenNewContactDialog(object sender, RoutedEventArgs e)
         {
-            AddItemWindow dialog = new AddItemWindow();
-            dialog.Owner = this;
+            AddItemWindow dialog = new AddItemWindow()
+            {
+                Owner = this
+            };
+
+            OverlayVisibility = Visibility.Visible;
             bool? result = dialog.ShowDialog();
+            OverlayVisibility = Visibility.Collapsed;
 
             if (!result.HasValue || !result.Value)
                 return;
