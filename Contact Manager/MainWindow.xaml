@@ -31,11 +31,11 @@
             </Grid.RowDefinitions>
             <Grid DataContext="{Binding ElementName=ContactListView}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Border BorderThickness="1" BorderBrush="Black" Margin="10" Cursor="Hand" Background="Transparent" MouseLeftButtonDown="ChangePersonPicture">
+                <Border BorderThickness="1" BorderBrush="Black" Margin="10" Cursor="Hand" Background="Transparent" MouseLeftButtonDown="ChangePersonPicture" Height="220">
                     <Image Stretch="Fill">
                         <Image.Source>
                             <MultiBinding Converter="{StaticResource ContactToImageSourceConverter}">
@@ -45,7 +45,7 @@
                         </Image.Source>
                     </Image>
                 </Border>
-                <Grid Grid.Column="1" VerticalAlignment="Center">
+                <Grid Grid.Column="1" VerticalAlignment="Center" Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
@@ -105,7 +105,7 @@
                     <Grid Grid.Row="1" MaxWidth="250" HorizontalAlignment="Left" Margin="0,20,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="10" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
