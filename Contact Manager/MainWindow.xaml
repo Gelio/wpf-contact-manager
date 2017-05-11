@@ -174,7 +174,8 @@
                         </Style>
                     </TabControl.Resources>
                     <TabItem Header="View mode">
-                        <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" ItemsSource="{Binding ContactsListCollectionView}" Name="ContactListView">
+                        <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" ItemsSource="{Binding ContactsListCollectionView}" Name="ContactListView"
+                                  SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <DockPanel>
@@ -210,7 +211,8 @@
                     </TabItem>
 
                     <TabItem Header="Edit mode">
-                        <DataGrid ItemsSource="{Binding ContactsListCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True">
+                        <DataGrid ItemsSource="{Binding ContactsListCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True"
+                                  SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />

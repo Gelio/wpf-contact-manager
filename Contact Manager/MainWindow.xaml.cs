@@ -31,6 +31,7 @@ namespace Contact_Manager
         private Visibility _overlayVisibility = Visibility.Collapsed;
         private string _contactsFilter;
         private ICollectionView _contactsListCollectionView;
+        private Contact _selectedContact;
 
         public ObservableCollection<Contact> ContactsList
         {
@@ -73,6 +74,17 @@ namespace Contact_Manager
                 if (value == _overlayVisibility) return;
                 _overlayVisibility = value;
                 OnPropertyChanged(nameof(OverlayVisibility));
+            }
+        }
+
+        public Contact SelectedContact
+        {
+            get { return _selectedContact; }
+            set
+            {
+                if (Equals(value, _selectedContact)) return;
+                _selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
             }
         }
 
