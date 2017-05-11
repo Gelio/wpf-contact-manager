@@ -11,7 +11,6 @@
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="AvailableSexList" Source="{Binding AvailableSexList}" />
-        <CollectionViewSource x:Key="ContactsList" Source="{Binding ContactsList}" />
         <local:PersonSexConverter x:Key="PersonSexConverter" />
         <local:ContactToImageSourceConverter x:Key="ContactToImageSourceConverter" />
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -47,6 +46,7 @@
                                 <MultiBinding Converter="{StaticResource ContactToImageSourceConverter}">
                                     <Binding Path="SelectedItem" />
                                     <Binding Path="SelectedItem.CustomPicture" />
+                                    <Binding Path="SelectedItem.Sex" />
                                 </MultiBinding>
                             </Image.Source>
                         </Image>
@@ -102,7 +102,8 @@
                                     <Label DockPanel.Dock="Left">
                                         <Image Source="search.png" Width="20" Height="20" />
                                     </Label>
-                                    <TextBox BorderThickness="0" FontSize="15" Text="{Binding ContactFilter}" />
+                                    <TextBox BorderThickness="0" FontSize="15"
+                                             Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ContactsFilter, UpdateSourceTrigger=PropertyChanged}" KeyUp="RefreshFilter" />
                                 </DockPanel>
                             </Border>
                         </StackPanel>
@@ -173,7 +174,7 @@
                         </Style>
                     </TabControl.Resources>
                     <TabItem Header="View mode">
-                        <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" DataContext="{StaticResource ContactsList}" ItemsSource="{Binding}" Name="ContactListView">
+                        <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" ItemsSource="{Binding ContactsListCollectionView}" Name="ContactListView">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <DockPanel>
@@ -209,7 +210,7 @@
                     </TabItem>
 
                     <TabItem Header="Edit mode">
-                        <DataGrid ItemsSource="{Binding ContactsList}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True">
+                        <DataGrid ItemsSource="{Binding ContactsListCollectionView}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />

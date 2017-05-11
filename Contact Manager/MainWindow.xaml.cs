@@ -29,6 +29,7 @@ namespace Contact_Manager
     {
         private ObservableCollection<Contact> _contactsList = new ObservableCollection<Contact>();
         private Visibility _overlayVisibility = Visibility.Collapsed;
+        private string _contactsFilter;
 
         public ObservableCollection<Contact> ContactsList
         {
@@ -38,6 +39,19 @@ namespace Contact_Manager
                 if (Equals(value, _contactsList)) return;
                 _contactsList = value;
                 OnPropertyChanged(nameof(ContactsList));
+            }
+        }
+
+        public ICollectionView ContactsListCollectionView { get; set; }
+
+        public string ContactsFilter
+        {
+            get { return _contactsFilter; }
+            set
+            {
+                if (value == _contactsFilter) return;
+                _contactsFilter = value;
+                OnPropertyChanged(nameof(ContactsFilter));
             }
         }
 
@@ -57,8 +71,31 @@ namespace Contact_Manager
         public MainWindow()
         {
             InitializeComponent();
+            var contactsListView = new CollectionViewSource() { Source = ContactsList };
+            ContactsListCollectionView = contactsListView.View;
+            ContactsListCollectionView.Filter = ContactsFilterPredicate;
             this.DataContext = this;
             PopulateContacts(null, null);
+        }
+
+        private bool ContactsFilterPredicate(object o)
+        {
+            Contact contact = o as Contact;
+            if (contact == null)
+                return false;
+
+            if (string.IsNullOrEmpty(ContactsFilter))
+                return true;
+
+            IEnumerable<string> filterParts = ContactsFilter.Split(' ').Select(s => s.ToLower()).ToArray();
+            IEnumerable<string> personData = new string[] { contact.Name, contact.Surname, contact.City, contact.PhoneNumber }.Select(s => s.ToLower()).ToArray();
+
+            foreach (string filterPart in filterParts)
+                foreach (string personDatum in personData)
+                    if (!string.IsNullOrEmpty(personDatum) && personDatum.Contains(filterPart))
+                        return true;
+
+            return false;
         }
 
         private void PopulateContacts(object sender, RoutedEventArgs e)
@@ -189,6 +226,11 @@ namespace Contact_Manager
                 return;
 
             ContactsList.Add(dialog.NewContact);
+        }
+
+        private void RefreshFilter(object sender, KeyEventArgs e)
+        {
+            ContactsListCollectionView.Refresh();
         }
     }
 }
