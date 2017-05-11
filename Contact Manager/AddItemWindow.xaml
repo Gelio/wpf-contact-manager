@@ -14,8 +14,7 @@
     <Window.Resources>
         <CollectionViewSource Source="{Binding AvailableSexList}" x:Key="AvailableSexList" />
         <local:PersonSexConverter x:Key="PersonSexConverter" />
-        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
-        <converters:NorBooleanConverter x:Key="NorBooleanConverter" />
+        <converters:EmptyStringToBooleanConverter x:Key="EmptyStringToBooleanConverter" />
         <ControlTemplate x:Key="ValidationTemplate">
             <DockPanel>
                 <Grid DockPanel.Dock="Right" Margin="2 0 0 0" ToolTip="{Binding [0].ErrorContent}">
@@ -108,15 +107,27 @@
 
         <Button Grid.Row="6" HorizontalAlignment="Center" Margin="5" Width="80" Height="25" Click="CancelWindow">Cancel</Button>
         <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Margin="5" Width="80" Height="25" Click="AddNewPerson" Content="Add">
-            <Button.IsEnabled>
-                <MultiBinding Converter="{StaticResource NorBooleanConverter}">
-                    <Binding ElementName="NameInput" Path="(Validation.HasError)" />
-                    <Binding ElementName="SurnameInput" Path="(Validation.HasError)" />
-                    <Binding ElementName="BirthDateInput" Path="(Validation.HasError)" />
-                    <Binding ElementName="PhoneNumberInput" Path="(Validation.HasError)" />
-                    <Binding ElementName="CityInput" Path="(Validation.HasError)" />
-                </MultiBinding>
-            </Button.IsEnabled>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=NameInput}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=SurnameInput}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=PhoneNumberInput}" Value="False" />
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=CityInput}" Value="False" />
+
+                                <Condition Binding="{Binding Path=Text, ElementName=NameInput, Converter={StaticResource EmptyStringToBooleanConverter}}" Value="False" />
+                                <Condition Binding="{Binding Path=Text, ElementName=SurnameInput, Converter={StaticResource EmptyStringToBooleanConverter}}" Value="False" />
+                                <Condition Binding="{Binding Path=Text, ElementName=PhoneNumberInput, Converter={StaticResource EmptyStringToBooleanConverter}}" Value="False" />
+                                <Condition Binding="{Binding Path=Text, ElementName=CityInput, Converter={StaticResource EmptyStringToBooleanConverter}}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
         </Button>
 
     </Grid>
