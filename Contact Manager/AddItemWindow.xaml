@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contact_Manager"
+        xmlns:validationRules="clr-namespace:Contact_Manager.ValidationRules"
         mc:Ignorable="d"
         Title="AddItemWindow" Height="300" Width="300"
         WindowStyle="None"
@@ -12,6 +13,7 @@
     <Window.Resources>
         <CollectionViewSource Source="{Binding AvailableSexList}" x:Key="AvailableSexList" />
         <local:PersonSexConverter x:Key="PersonSexConverter" />
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
     </Window.Resources>
     
     <Grid Margin="20 8" DataContext="{Binding NewContact}">
@@ -39,8 +41,21 @@
         </Grid.Resources>
 
         <TextBlock Grid.Row="0">Name:</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource InputControlStyle}"
-                 Text="{Binding Name}"/>
+        <DockPanel Grid.Row="0" Grid.Column="1">
+            <Label DockPanel.Dock="Right">
+                <Image Source="delete.png" ToolTip="{Binding ElementName=NameInput, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                       Visibility="{Binding ElementName=NameInput, Path=Validation.HasError, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Label>
+            <TextBox Style="{StaticResource InputControlStyle}" Name="NameInput">
+                <TextBox.Text>
+                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnSourceUpdated="True" ValidatesOnExceptions="True">
+                        <Binding.ValidationRules>
+                            <validationRules:RequiredRule Name="Name" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </DockPanel>
 
         <TextBlock Grid.Row="1">Surname:</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource InputControlStyle}"
