@@ -126,7 +126,46 @@
             </Grid>
 
 
-            <TabControl Grid.Row="1">
+            <TabControl Grid.Row="1" Margin="10">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <DataTemplate.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="FontSize" Value="15" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=TabItem}, Path=IsSelected}" Value="True">
+                                                    <Setter Property="Foreground" Value="#3462ad" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=TabItem}, Path=IsSelected}" Value="True">
+                                                    <Setter Property="BorderBrush" Value="#3462ad" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataTemplate.Resources>
+                                    <Border BorderThickness="0 0 0 2" Padding="10 0 10 2">
+                                        <Label>
+                                            <ContentPresenter Content="{TemplateBinding Content}" />
+                                        </Label>
+                                    </Border>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <ContentPresenter ContentSource="Header" Margin="0,3" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
                 <TabItem Header="View mode">
                     <ListView HorizontalContentAlignment="Stretch" AlternationCount="2" DataContext="{StaticResource ContactsList}" ItemsSource="{Binding}" Name="ContactListView">
                         <ListView.ItemTemplate>
@@ -194,4 +233,6 @@
         </Grid>
     </DockPanel>
 </Window>
+
+
 
