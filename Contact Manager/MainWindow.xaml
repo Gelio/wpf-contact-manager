@@ -164,7 +164,7 @@
                 </TabItem>
 
                 <TabItem Header="Edit mode">
-                    <DataGrid ItemsSource="{Binding ContactsList}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True">
+                    <DataGrid ItemsSource="{Binding ContactsList}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                             <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
