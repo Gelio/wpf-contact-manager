@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contact_Manager"
         xmlns:validationRules="clr-namespace:Contact_Manager.ValidationRules"
+        xmlns:converters="clr-namespace:Contact_Manager.Converters"
         mc:Ignorable="d"
         Title="AddItemWindow" Height="300" Width="300"
         WindowStyle="None"
@@ -14,6 +15,7 @@
         <CollectionViewSource Source="{Binding AvailableSexList}" x:Key="AvailableSexList" />
         <local:PersonSexConverter x:Key="PersonSexConverter" />
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
+        <converters:NorBooleanConverter x:Key="NorBooleanConverter" />
         <ControlTemplate x:Key="ValidationTemplate">
             <DockPanel>
                 <Grid DockPanel.Dock="Right" Margin="2 0 0 0" ToolTip="{Binding [0].ErrorContent}">
@@ -62,7 +64,7 @@
         </TextBox>
 
         <TextBlock Grid.Row="1">Surname:</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Name="SurnameInput">
             <TextBox.Text>
                 <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -74,7 +76,7 @@
 
         <TextBlock Grid.Row="2">Date of birth:</TextBlock>
         <DatePicker Grid.Row="2" Grid.Column="1" Style="{StaticResource InputControlStyle}"
-                 SelectedDate="{Binding BirthDate}"/>
+                 SelectedDate="{Binding BirthDate}" Name="BirthDateInput" />
 
         <TextBlock Grid.Row="3">Sex:</TextBlock>
         <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource InputControlStyle}"
@@ -82,7 +84,7 @@
                   ItemsSource="{Binding Source={StaticResource AvailableSexList}}" />
 
         <TextBlock Grid.Row="4">Phone number:</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+        <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Name="PhoneNumberInput">
             <TextBox.Text>
                 <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -94,7 +96,7 @@
         </TextBox>
 
         <TextBlock Grid.Row="5">City:</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
+        <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource InputControlStyle}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Name="CityInput">
             <TextBox.Text>
                 <Binding Path="City" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -105,7 +107,17 @@
         </TextBox>
 
         <Button Grid.Row="6" HorizontalAlignment="Center" Margin="5" Width="80" Height="25" Click="CancelWindow">Cancel</Button>
-        <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Margin="5" Width="80" Height="25" Click="AddNewPerson">Add</Button>
+        <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Margin="5" Width="80" Height="25" Click="AddNewPerson" Content="Add">
+            <Button.IsEnabled>
+                <MultiBinding Converter="{StaticResource NorBooleanConverter}">
+                    <Binding ElementName="NameInput" Path="(Validation.HasError)" />
+                    <Binding ElementName="SurnameInput" Path="(Validation.HasError)" />
+                    <Binding ElementName="BirthDateInput" Path="(Validation.HasError)" />
+                    <Binding ElementName="PhoneNumberInput" Path="(Validation.HasError)" />
+                    <Binding ElementName="CityInput" Path="(Validation.HasError)" />
+                </MultiBinding>
+            </Button.IsEnabled>
+        </Button>
 
     </Grid>
 </Window>
