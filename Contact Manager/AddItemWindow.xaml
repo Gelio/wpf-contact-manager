@@ -16,7 +16,7 @@
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
         <ControlTemplate x:Key="ValidationTemplate">
             <DockPanel>
-                <Grid DockPanel.Dock="Right" Margin="2 0 0 0">
+                <Grid DockPanel.Dock="Right" Margin="2 0 0 0" ToolTip="{Binding [0].ErrorContent}">
                     <Ellipse Width="23" Height="23" Fill="Red" />
                     <TextBlock Text="X" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" />
                 </Grid>
